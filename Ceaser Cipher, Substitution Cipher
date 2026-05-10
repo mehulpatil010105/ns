@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+ 
+char dc[26] = "XDGSZANYOBTMJCEVFHKWPLQURI";
+char ec[26] = "abcdefghijklmnopqrstuvwxyz";
+ 
+void e(char *p);
+void d(char *p);
+ 
+int main()
+{
+    char p[100]; 
+ 
+    printf("\nEnter plain text: ");
+    scanf("%99s", p);   
+ 
+    printf("\nAfter Encryption:\n-------------------\n");
+    e(p);
+    printf("%s", p);
+ 
+    printf("\nAfter Decryption:\n-------------------\n");
+    d(p);
+    printf("%s\n", p);
+ 
+    return 0;
+}
+ 
+void e(char *p)
+{
+    int i = 0;
+ 
+    while (*(p + i) != '\0')
+    {
+        if (*(p + i) >= 'a' && *(p + i) <= 'z')
+        {
+            *(p + i) = dc[*(p + i) - 'a'];
+        }
+        i++;
+    }
+}
+ 
+void d(char *p)
+{
+    int j = 0;
+ 
+    while (*(p + j) != '\0')
+    {
+        int i;
+ 
+        for (i = 0; i < 26; i++)
+        {
+            if (dc[i] == *(p + j))
+            {
+                *(p + j) = ec[i];
+                break;
+            }
+        }
+        j++;
+    }
+}
+ 
